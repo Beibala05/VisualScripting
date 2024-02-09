@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>res/icons/clear.png</file>
+        <file>res/icons/code.png</file>
+        <file>res/icons/compile.png</file>
+        <file>res/icons/compiler.png</file>
+        <file>res/icons/err.png</file>
+        <file>res/icons/good.png</file>
+        <file>res/icons/load_data.png</file>
+        <file>res/icons/run.png</file>
+        <file>res/icons/save.png</file>
+        <file>res/icons/save_data.png</file>
+        <file>res/icons/terminal.png</file>
+        <file>res/icons/update.png</file>
+    </qresource>
+</RCC>
