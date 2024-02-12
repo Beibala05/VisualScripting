@@ -166,11 +166,7 @@ void MainWindow::userPermission()
     {
         qDebug() << "Пользователь отказал в разрешении на создание файлов";
 
-        QWidget* __inf = new QWidget();
-
-        QMessageBox::critical(__inf, "Отказ доступа", "Для дальнейшей работы с программой придется дать доступ к директории с временными файлами\n\nНИКАКИХ ВИРУСОВ НЕТ !!!");
-
-        delete __inf;
+        QMessageBox::critical(nullptr, "Отказ доступа", "Для дальнейшей работы с программой придется дать доступ к директории с временными файлами\n\nНИКАКИХ ВИРУСОВ НЕТ !!!");
 
         MainWindow::userPermission();
     }
@@ -178,7 +174,6 @@ void MainWindow::userPermission()
 
 void MainWindow::createFiles()
 {
-    QWidget* __inf = new QWidget();
     QString path = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
 
     if (path.isEmpty())
@@ -186,9 +181,13 @@ void MainWindow::createFiles()
         MainWindow::userPermission();
     }
 
-    path_txt = path + "/exe.txt";
-    path_cpp = path + "/exe.cpp";
-    path_exe = path + "/exe";
+    path_txt = path + "/textCodeInformationNodes.txt";
+    path_cpp = path + "/CPPCodeInformationNodes.cpp";
+#ifdef __LINUX__OS__
+    path_exe = path + "/executable_nodes";
+#elif defined (__WINDOWS__OS__)
+    path_exe = path + "/executable_nodes.exe";
+#endif
 
     Functional::path_txt = path_txt;
     Functional::path_cpp = path_cpp;
@@ -207,24 +206,22 @@ void MainWindow::createFiles()
         file_txt.open(QIODevice::WriteOnly);
         file_txt.close();
 
-        QMessageBox::information(__inf, "Работа с файлами", "Создан файл: " + path_txt);
+        QMessageBox::information(nullptr, "Работа с файлами", "Создан файл: " + path_txt);
     }
     if (!file_cpp.exists())
     {
         file_cpp.open(QIODevice::WriteOnly);
         file_cpp.close();
 
-        QMessageBox::information(__inf, "Работа с файлами", "Создан файл: " + path_cpp);
+        QMessageBox::information(nullptr, "Работа с файлами", "Создан файл: " + path_cpp);
     }
     if (!file_exe.exists())
     {
         file_exe.open(QIODevice::WriteOnly);
         file_exe.close();
 
-        QMessageBox::information(__inf, "Работа с файлами", "Создан файл: " + path_exe);
+        QMessageBox::information(nullptr, "Работа с файлами", "Создан файл: " + path_exe);
     }
-
-    delete __inf;
 }
 
 void MainWindow::hideAndShowPanelSlot()

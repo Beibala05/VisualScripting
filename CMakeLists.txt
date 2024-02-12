@@ -10,12 +10,16 @@ find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
 include_directories(src)
 
+qt5_add_resources(RESOURCES sources/resources.qrc)
+
 set(SOURCES
     src/main.cpp
     src/main_window.cpp
     src/node.cpp
     src/viewport.cpp
     src/functional.cpp
+    logo.rc
+    ${RESOURCES}
 )
 
 set(HEADERS
@@ -28,5 +32,6 @@ set(HEADERS
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+
 
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Gui Qt5::Widgets)

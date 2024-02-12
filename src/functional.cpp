@@ -92,8 +92,6 @@ void Functional::compile()
 {
     QString code;
 
-    qDebug() << Functional::path_txt;
-
     QFile file_txt(path_txt);
     if (file_txt.open(QIODevice::ReadOnly))
     {
@@ -123,31 +121,37 @@ void Functional::compile()
     if (current_compiler == "GCC")
     {
         const std::string compile_GCC = (std::string)"g++ " + Functional::path_cpp.toStdString() + (std::string)" -o " + Functional::path_exe.toStdString() + (std::string)" -lm";
+        MainWindow::initMessageWindow(QString::fromStdString(compile_GCC), "green");
         isCompileSucces = std::system(compile_GCC.c_str());
     }
     else if (current_compiler == "Clang")
     {
         const std::string compile_clang = (std::string)"clang++ " + path_cpp.toStdString() + (std::string)" -o " + path_exe.toStdString() + (std::string)" -lm";
+        MainWindow::initMessageWindow(QString::fromStdString(compile_clang), "green");
         isCompileSucces = std::system(compile_clang.c_str());
     }
     else if (current_compiler == "Intel C++ Compiler")
     {
         const std::string compile_icpc = (std::string)"icpc -o " + path_exe.toStdString() + (std::string)" -lm " + path_cpp.toStdString();
+        MainWindow::initMessageWindow(QString::fromStdString(compile_icpc), "green");
         isCompileSucces = std::system(compile_icpc.c_str());
     }
     else if (current_compiler == "Digital Mars C++ Compiler")
     {
         const std::string compile_dmc = (std::string)"dmc -o " + path_exe.toStdString() + (std::string)" -lm " + path_cpp.toStdString();
+        MainWindow::initMessageWindow(QString::fromStdString(compile_dmc), "green");
         isCompileSucces = std::system(compile_dmc.c_str());
     }
     else if (current_compiler == "PathScale EKOPath Compiler Suite")
     {
         const std::string compile_pathCC = (std::string)"pathCC -o " + path_exe.toStdString() + (std::string)" -lm " + path_cpp.toStdString();
+        MainWindow::initMessageWindow(QString::fromStdString(compile_pathCC), "green");
         isCompileSucces = std::system(compile_pathCC.c_str());
     }
     else if (current_compiler == "Microsoft Visual C++")
     {
         const std::string compile_cl = (std::string)"cl /EHsc /Fe " + path_exe.toStdString() + (std::string)" -lm " + path_cpp.toStdString();
+        MainWindow::initMessageWindow(QString::fromStdString(compile_cl), "green");
         isCompileSucces = std::system(compile_cl.c_str());
     }
 

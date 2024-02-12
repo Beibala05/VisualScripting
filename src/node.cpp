@@ -2467,7 +2467,9 @@ void Node::save_nodes_slot()
     current_node = head;
 
     if (file.open(QFile::WriteOnly | QFile::Truncate))
+    {
         file.close();
+    }
 
     
     if (file.open(QIODevice::Append))
