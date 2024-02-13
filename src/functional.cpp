@@ -38,7 +38,7 @@ int Functional::findTerminal(std::string& command, std::string& __e, size_t __t)
         if (system(("which " + term + " >/dev/null 2>&1").c_str()) == 0) 
         {
             if (__t == Terminal::RUN_EXE)
-                command = term + " -e \"/bin/bash -c '" + Functional::path_exe.toStdString() + "exe; exec bash'\"";
+                command = term + " -e \"/bin/bash -c '" + Functional::path_exe.toStdString() + "; exec bash'\"";
             else if (__t == Terminal::RUN_TERMINAL)
                 command = term;
             __e = term;
